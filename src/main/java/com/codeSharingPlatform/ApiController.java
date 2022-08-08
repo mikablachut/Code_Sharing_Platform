@@ -1,18 +1,29 @@
 package com.codeSharingPlatform;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
+@RequestMapping("/api")
 public class ApiController {
-    String code = "public static void main(String[] args) {\n" +
-            "\tSpringApplication.run(CodeSharingPlatform.class, args);\n}";
+    private final CodeRepository repository;
+    @Autowired
+    public ApiController(CodeRepository repository) {
+        this.repository = repository;
+    }
 
-    @GetMapping("/api/code")
+    @GetMapping("/code")
     public Code getJsonObject(HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
-        return new Code(code);
+        return repository.getCode();
+    }
+
+    @PostMapping("/code/new")
+    public ResponseEntity<Object> addCode(@RequestBody Code code) {
+        repository.setCode(code);
+        return ResponseEntity.ok("{}");
     }
 }
