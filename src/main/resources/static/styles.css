@@ -1,0 +1,9 @@
+span#load_date{
+    color: #00b300;
+    font-family: Verdana, sans-serif;
+}
+
+#code_snippet {
+    border-style: groove;
+    background-color: #f5f5ef
+}
