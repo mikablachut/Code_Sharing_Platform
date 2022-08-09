@@ -16,12 +16,12 @@ public class WebController {
         this.repository = repository;
     }
 
-    @GetMapping("/code")
-    public String getCode(Model model) {
-        model.addAttribute("date", repository.getCode().formatDate(repository.getCode().getDate()));
-        model.addAttribute("code", repository.getCode().getCode());
-        return "index.html";
-    }
+//    @GetMapping("/code")
+//    public String getCode(Model model) {
+//        model.addAttribute("date", repository.getCode().formatDate(repository.getCode().getDate()));
+//        model.addAttribute("code", repository.getCode().getCode());
+//        return "index.html";
+//    }
 
     @GetMapping("/code/new")
     public String addCode() {

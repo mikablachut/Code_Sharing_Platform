@@ -18,11 +18,11 @@ import java.time.format.DateTimeFormatter;
 public class Code {
     private String code;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
     private LocalDateTime date;
 
     public String formatDate(LocalDateTime localDateTime) {
-        final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+        final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         return localDateTime.format(formatter);
     }

@@ -15,15 +15,14 @@ public class ApiController {
         this.repository = repository;
     }
 
-    @GetMapping("/code")
-    public Code getJsonObject(HttpServletResponse response) {
+    @GetMapping("/code/{id}")
+    public Code getJsonObject(@PathVariable Integer id, HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
-        return repository.getCode();
+        return repository.getCodeByID(id);
     }
 
     @PostMapping("/code/new")
     public ResponseEntity<Object> addCode(@RequestBody Code code) {
-        repository.setCode(code);
-        return ResponseEntity.ok("{}");
+        return ResponseEntity.ok(repository.storeCode(code));
     }
 }
