@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <textarea id="code_snippet" rows="20" cols="200"> // write your code here </textarea>
