@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<p id="load_date">${date}</p>
+<span id="load_date">${date}</span>
 <pre id="code_snippet"> ${code}</pre>
 </body>
 </html>

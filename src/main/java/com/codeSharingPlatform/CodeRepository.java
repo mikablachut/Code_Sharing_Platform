@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public class CodeRepository implements ObjectRepository<Code> {
-   private LinkedHashMap<Long, Code> repository;
+    private LinkedHashMap<Long, Code> repository;
 
    public CodeRepository() {
        this.repository = new LinkedHashMap<>();
@@ -17,7 +17,8 @@ public class CodeRepository implements ObjectRepository<Code> {
    @Override
     public Long storeCode (Code code) {
        Long id = (long)repository.size() + 1;
-       Code codeToPut = new Code(code.getCode(), LocalDateTime.now());
+       String date = code.formatDate(LocalDateTime.now());
+       Code codeToPut = new Code(code.getCode(), date);
        repository.put(id, codeToPut);
        return id;
    }
@@ -27,6 +28,7 @@ public class CodeRepository implements ObjectRepository<Code> {
        return repository.get(id);
    }
 
+   @Override
    public List<Code> getLatestCode() {
        List<Code> latestCode = repository.entrySet().stream()
                .map(Map.Entry::getValue)
