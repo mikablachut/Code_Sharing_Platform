@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/")
 public class WebController {
     private final CodeRepository repository;
 
@@ -16,15 +17,18 @@ public class WebController {
         this.repository = repository;
     }
 
-//    @GetMapping("/code")
-//    public String getCode(Model model) {
-//        model.addAttribute("date", repository.getCode().formatDate(repository.getCode().getDate()));
-//        model.addAttribute("code", repository.getCode().getCode());
-//        return "index.html";
-//    }
+    @GetMapping("/code/{id}")
+    public String getCode(@PathVariable("id") Long id, Model model) {
+        String code = repository.getCodeByID(id).getCode();
+        LocalDateTime localDateTime = repository.getCodeByID(id).getDate();
+        String time = repository.getCodeByID(id).formatDate(localDateTime);
+        model.addAttribute("date", time);
+        model.addAttribute("code", code);
+        return "index";
+    }
 
     @GetMapping("/code/new")
     public String addCode() {
-        return "newCode.html";
+        return "newCode";
     }
 }

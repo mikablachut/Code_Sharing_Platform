@@ -26,4 +26,9 @@ public class Code {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         return localDateTime.format(formatter);
     }
+
+    @Override
+    public String toString() {
+        return date + "\n" + code;
+    }
 }

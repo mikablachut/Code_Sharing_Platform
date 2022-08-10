@@ -16,7 +16,7 @@ public class ApiController {
     }
 
     @GetMapping("/code/{id}")
-    public Code getJsonObject(@PathVariable Integer id, HttpServletResponse response) {
+    public Code getJsonObject(@PathVariable Long id, HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
         return repository.getCodeByID(id);
     }
