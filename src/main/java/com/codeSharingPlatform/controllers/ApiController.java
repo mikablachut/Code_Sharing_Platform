@@ -45,7 +45,8 @@ public class ApiController {
         try {
             Code createdCode = codeService.save(new Code(code.getId(), code.getCode(),
                     code.formatDate(LocalDateTime.now())));
-            return new ResponseEntity<>("{\"id\": " + createdCode.getId() + "}", HttpStatus.OK);
+            String id = String.valueOf(createdCode.getId());
+            return new ResponseEntity<>("{\"id\": " + "\"" + id + "\"" + "}", HttpStatus.OK);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
