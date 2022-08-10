@@ -3,7 +3,8 @@ package com.codeSharingPlatform;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class CodeRepository implements ObjectRepository<Code> {
@@ -24,5 +25,13 @@ public class CodeRepository implements ObjectRepository<Code> {
    @Override
     public Code getCodeByID(Long id) {
        return repository.get(id);
+   }
+
+   public List<Code> getLatestCode() {
+       List<Code> latestCode = repository.entrySet().stream()
+               .map(Map.Entry::getValue)
+               .collect(Collectors.toList());
+       Collections.reverse(latestCode);
+       return latestCode.size() > 10 ? latestCode.subList(0,10) : latestCode;
    }
 }

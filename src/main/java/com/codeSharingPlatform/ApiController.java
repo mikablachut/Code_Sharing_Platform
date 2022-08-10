@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -16,9 +17,14 @@ public class ApiController {
     }
 
     @GetMapping("/code/{id}")
-    public Code getJsonObject(@PathVariable Long id, HttpServletResponse response) {
+    public Code getCode(@PathVariable Long id, HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
         return repository.getCodeByID(id);
+    }
+
+    @GetMapping("/code/latest")
+    public List<Code> getListOfLatestCode() {
+        return repository.getLatestCode();
     }
 
     @PostMapping("/code/new")
