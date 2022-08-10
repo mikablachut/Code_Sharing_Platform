@@ -1,5 +1,7 @@
-package com.codeSharingPlatform;
+package com.codeSharingPlatform.controllers;
 
+import com.codeSharingPlatform.entities.Code;
+import com.codeSharingPlatform.services.CodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,17 +11,17 @@ import java.util.List;
 
 @Controller
 public class WebController {
-    private final CodeRepository repository;
+    private final CodeService codeService;
 
     @Autowired
-    public WebController(CodeRepository repository) {
-        this.repository = repository;
+    public WebController(CodeService codeService) {
+        this.codeService = codeService;
     }
 
     @GetMapping("/code/{id}")
     public String getCode(@PathVariable("id") Long id, Model model) {
-        String code = repository.getCodeByID(id).getCode();
-        String time = repository.getCodeByID(id).getDate();
+        String time = codeService.findCodeByID(id).getDate();
+        String code = codeService.findCodeByID(id).getCode();
         model.addAttribute("date", time);
         model.addAttribute("code", code);
         return "index";
@@ -27,7 +29,7 @@ public class WebController {
 
     @GetMapping("/code/latest")
     public String getLatestCode(Model model) {
-        List<Code> listOfLatestCode = repository.getLatestCode();
+        List<Code> listOfLatestCode = codeService.getLatestCode();
         model.addAttribute("codes", listOfLatestCode);
         return "latestCode";
     }
