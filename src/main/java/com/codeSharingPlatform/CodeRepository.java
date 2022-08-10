@@ -1,9 +1,11 @@
 package com.codeSharingPlatform;
 
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
@@ -15,11 +17,11 @@ public class CodeRepository implements ObjectRepository<Code> {
    }
 
    @Override
-    public Long storeCode (Code code) {
-       Long id = (long)repository.size() + 1;
+    public CodeId storeCode (Code code) {
+       CodeId id = new CodeId (String.valueOf(repository.size() + 1));
        String date = code.formatDate(LocalDateTime.now());
        Code codeToPut = new Code(code.getCode(), date);
-       repository.put(id, codeToPut);
+       repository.put((long)repository.size() + 1, codeToPut);
        return id;
    }
 
