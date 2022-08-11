@@ -1,6 +1,7 @@
 package com.codeSharingPlatform.controllers;
 
 import com.codeSharingPlatform.entities.Code;
+import com.codeSharingPlatform.exceptions.CodeNotFoundException;
 import com.codeSharingPlatform.services.CodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,9 +26,9 @@ public class ApiController {
     public Code getCode(@PathVariable String id, HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
         try {
-            return codeService.findCodeByID(id);
+            return codeService.getCodeByID(id);
         } catch (RuntimeException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new CodeNotFoundException();
         }
     }
 

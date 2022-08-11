@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +24,7 @@ public class Code {
     @Column
     private String code;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column
     private String date;
 
@@ -44,7 +43,7 @@ public class Code {
     private boolean viewRestricted;
 
     public String formatDate(LocalDateTime localDateTime) {
-        final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
+        final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         return localDateTime.format(formatter);
     }
