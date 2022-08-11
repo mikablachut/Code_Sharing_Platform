@@ -1,6 +1,7 @@
 package com.codeSharingPlatform.services;
 
 import com.codeSharingPlatform.entities.Code;
+import com.codeSharingPlatform.exceptions.CodeNotFoundException;
 import com.codeSharingPlatform.repositories.CodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,17 @@ public class CodeService {
    }
 
     public Code findCodeByID(String id) {
-        return codeRepository.findCodeById(id);
+        Code code = codeRepository.findCodeById(id);
+        if (code.isViewRestricted() && code.getViews() > 0) {
+            code.setViews(code.getViews() - 1);
+            codeRepository.save(code);
+            return code;
+        } else if (code.isViewRestricted() && code.getViews() <= 0) {
+            codeRepository.deleteById(id);
+            throw new CodeNotFoundException();
+        } else {
+            return code;
+        }
    }
 
    public List<Code> getLatestCode() {

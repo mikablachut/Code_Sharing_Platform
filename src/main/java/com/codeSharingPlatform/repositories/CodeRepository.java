@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CodeRepository extends CrudRepository<Code, Long> {
+public interface CodeRepository extends CrudRepository<Code, String> {
     Code findCodeById(String id);
     List<Code>findAllByOrderByDateDesc();
 }
