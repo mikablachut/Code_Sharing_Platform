@@ -20,9 +20,13 @@ public class WebController {
 
     @GetMapping("/code/{id}")
     public String getCode(@PathVariable("id") String id, Model model) {
-        String time = codeService.findCodeByID(id).getDate();
+        String date = codeService.findCodeByID(id).getDate();
+        String views = String.valueOf(codeService.findCodeByID(id).getViews());
+        String time = String.valueOf(codeService.findCodeByID(id).getTime());
         String code = codeService.findCodeByID(id).getCode();
-        model.addAttribute("date", time);
+        model.addAttribute("date", date);
+        model.addAttribute("views", views);
+        model.addAttribute("time", time);
         model.addAttribute("code", code);
         return "index";
     }

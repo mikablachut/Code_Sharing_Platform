@@ -29,6 +29,12 @@ public class Code {
     @Column
     private String date;
 
+    @Column
+    private Long time;
+
+    @Column
+    Long views;
+
     public String formatDate(LocalDateTime localDateTime) {
         final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
