@@ -16,7 +16,9 @@ public class CodeService {
     }
 
     public Code save (Code codeToSave) {
-       return codeRepository.save(codeToSave);
+        codeToSave.setTimeRestricted(codeToSave.getTime() != 0);
+        codeToSave.setViewRestricted(codeToSave.getViews() != 0);
+        return codeRepository.save(codeToSave);
    }
 
     public Code findCodeByID(String id) {

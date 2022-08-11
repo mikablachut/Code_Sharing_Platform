@@ -44,9 +44,9 @@ public class ApiController {
     public ResponseEntity<String> addCode(@RequestBody Code code) {
         try {
             Code createdCode = codeService.save(new Code(code.getId(), code.getCode(),
-                    code.formatDate(LocalDateTime.now()), code.getTime(), code.getViews()));
-            String id = createdCode.getId();
-            return new ResponseEntity<>("{\"id\": " + "\"" + id + "\"" + "}", HttpStatus.OK);
+                    code.formatDate(LocalDateTime.now()), code.getTime(), code.getViews(), code.isTimeRestricted(),
+                    code.isViewRestricted()));
+            return new ResponseEntity<>("{\"id\": " + "\"" + createdCode.getId() + "\"" + "}", HttpStatus.OK);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }

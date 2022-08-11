@@ -33,7 +33,15 @@ public class Code {
     private Long time;
 
     @Column
-    Long views;
+    private Long views;
+
+    @Column
+    @JsonIgnore
+    private boolean timeRestricted;
+
+    @Column
+    @JsonIgnore
+    private boolean viewRestricted;
 
     public String formatDate(LocalDateTime localDateTime) {
         final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
