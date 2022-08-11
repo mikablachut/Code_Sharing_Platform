@@ -19,7 +19,7 @@ public class WebController {
     }
 
     @GetMapping("/code/{id}")
-    public String getCode(@PathVariable("id") Long id, Model model) {
+    public String getCode(@PathVariable("id") String id, Model model) {
         String time = codeService.findCodeByID(id).getDate();
         String code = codeService.findCodeByID(id).getCode();
         model.addAttribute("date", time);

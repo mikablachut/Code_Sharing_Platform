@@ -19,7 +19,7 @@ public class CodeService {
        return codeRepository.save(codeToSave);
    }
 
-    public Code findCodeByID(Long id) {
+    public Code findCodeByID(String id) {
         return codeRepository.findCodeById(id);
    }
 

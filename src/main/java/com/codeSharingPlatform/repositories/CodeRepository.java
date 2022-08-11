@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface CodeRepository extends CrudRepository<Code, Long> {
-    Code findCodeById(Long id);
+    Code findCodeById(String id);
     List<Code>findAllByOrderByDateDesc();
 }

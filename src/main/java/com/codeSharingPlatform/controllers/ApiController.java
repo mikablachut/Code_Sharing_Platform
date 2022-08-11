@@ -22,7 +22,7 @@ public class ApiController {
     }
 
     @GetMapping("/code/{id}")
-    public Code getCode(@PathVariable Long id, HttpServletResponse response) {
+    public Code getCode(@PathVariable String id, HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
         try {
             return codeService.findCodeByID(id);
@@ -45,7 +45,7 @@ public class ApiController {
         try {
             Code createdCode = codeService.save(new Code(code.getId(), code.getCode(),
                     code.formatDate(LocalDateTime.now())));
-            String id = String.valueOf(createdCode.getId());
+            String id = createdCode.getId();
             return new ResponseEntity<>("{\"id\": " + "\"" + id + "\"" + "}", HttpStatus.OK);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,10 +19,9 @@ import java.time.format.DateTimeFormatter;
 public class Code {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     @JsonIgnore
-    private Long id;
+    private String id = generateId();
     @Column
     private String code;
 
@@ -33,6 +33,11 @@ public class Code {
         final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         return localDateTime.format(formatter);
+    }
+
+    public static String generateId() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
     }
 
     @Override
