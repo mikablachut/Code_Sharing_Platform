@@ -40,7 +40,7 @@ public class CodeService {
    }
 
    public void changeTimeAndViews(Code code) {
-       final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss";
+       final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss:SSS";
        if (code.isViewRestricted()) {
            if (code.getViews() > 0) {
                code.setViews(code.getViews() - 1);

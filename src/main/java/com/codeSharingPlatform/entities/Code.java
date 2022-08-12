@@ -24,7 +24,7 @@ public class Code {
     @Column
     private String code;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
     @Column
     private String date;
 
@@ -43,7 +43,7 @@ public class Code {
     private boolean viewRestricted;
 
     public String formatDate(LocalDateTime localDateTime) {
-        final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+        final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         return localDateTime.format(formatter);
     }
