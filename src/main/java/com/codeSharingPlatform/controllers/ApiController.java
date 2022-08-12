@@ -1,6 +1,7 @@
 package com.codeSharingPlatform.controllers;
 
 import com.codeSharingPlatform.entities.Code;
+import com.codeSharingPlatform.exceptions.CodeNotFoundException;
 import com.codeSharingPlatform.services.CodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +23,12 @@ public class ApiController {
     }
 
     @GetMapping("/code/{id}")
-    public Code getCode(@PathVariable Long id, HttpServletResponse response) {
+    public Code getCode(@PathVariable String id, HttpServletResponse response) {
         response.setHeader("Content-Type", "application/json");
         try {
-            return codeService.findCodeByID(id);
+            return codeService.getCodeByID(id);
         } catch (RuntimeException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new CodeNotFoundException();
         }
     }
 
@@ -44,9 +45,9 @@ public class ApiController {
     public ResponseEntity<String> addCode(@RequestBody Code code) {
         try {
             Code createdCode = codeService.save(new Code(code.getId(), code.getCode(),
-                    code.formatDate(LocalDateTime.now())));
-            String id = String.valueOf(createdCode.getId());
-            return new ResponseEntity<>("{\"id\": " + "\"" + id + "\"" + "}", HttpStatus.OK);
+                    code.formatDate(LocalDateTime.now()), code.getTime(), code.getViews(), code.isTimeRestricted(),
+                    code.isViewRestricted()));
+            return new ResponseEntity<>("{\"id\": " + "\"" + createdCode.getId() + "\"" + "}", HttpStatus.OK);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }

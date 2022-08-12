@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,10 +18,9 @@ import java.time.format.DateTimeFormatter;
 public class Code {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     @JsonIgnore
-    private Long id;
+    private String id = generateId();
     @Column
     private String code;
 
@@ -29,10 +28,29 @@ public class Code {
     @Column
     private String date;
 
+    @Column
+    private Long time;
+
+    @Column
+    private Long views;
+
+    @Column
+    @JsonIgnore
+    private boolean timeRestricted;
+
+    @Column
+    @JsonIgnore
+    private boolean viewRestricted;
+
     public String formatDate(LocalDateTime localDateTime) {
         final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss:SSS";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
         return localDateTime.format(formatter);
+    }
+
+    public static String generateId() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
     }
 
     @Override
