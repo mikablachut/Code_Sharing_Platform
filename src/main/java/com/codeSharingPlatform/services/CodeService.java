@@ -50,19 +50,19 @@ public class CodeService {
                throw new CodeNotFoundException();
            }
        }
-        if (code.isTimeRestricted()) {
-            long currentSeconds = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
-            LocalDateTime codeLocalDateTime = LocalDateTime.parse(code.getDate(),
-                    DateTimeFormatter.ofPattern(DATE_FORMATTER));
-            long secondsInDatabase = codeLocalDateTime.toEpochSecond(ZoneOffset.UTC);
-            long time = code.getTime() - (currentSeconds - secondsInDatabase);
-            if (time <= 0) {
-                codeRepository.deleteById(code.getId());
-                throw new CodeNotFoundException();
-            } else {
-                code.setTime(time);
-                codeRepository.save(code);
-            }
-        }
+       if (code.isTimeRestricted()) {
+           long currentSeconds = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+           LocalDateTime codeLocalDateTime = LocalDateTime.parse(code.getDate(),
+                   DateTimeFormatter.ofPattern(DATE_FORMATTER));
+           long secondsInDatabase = codeLocalDateTime.toEpochSecond(ZoneOffset.UTC);
+           long time = code.getTime() - (currentSeconds - secondsInDatabase);
+           if (time <= 0) {
+               codeRepository.deleteById(code.getId());
+               throw new CodeNotFoundException();
+           } else {
+               code.setTime(time);
+               codeRepository.save(code);
+           }
+       }
    }
 }
