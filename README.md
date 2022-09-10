@@ -68,7 +68,7 @@ Let see those steps for Gradle:
 
 ```
 gradle build
-java -jar .\build\libs\code-sharing-platform-2.7.2.jar
+java -jar .\build\libs\code_sharing_platform-2.7.2.jar
 ```
 
 ## REST API Endpoints
