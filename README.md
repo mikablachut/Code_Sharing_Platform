@@ -173,7 +173,7 @@ GET method
 ## Web Interface Requests
 
 When you start the application a H2 database containing initial tables will be automaticly created. You can use your own browser and enter the address
-```http://localhost:8080``` for testing the existing requests.
+```http://localhost:8889``` for testing the existing requests.
 
 ### Add Code Request
 
@@ -186,7 +186,7 @@ Request should return HTML that contains:
 - Button <button id="send_snippet" type="submit" onclick="send()">Submit</button>.
 
 Request:
-```http://localhost:8080/code/new```
+```http://localhost:8889/code/new```
 
 <details>
 <summary><b>Sample response</b></summary>
@@ -200,7 +200,7 @@ Request:
 Request return HTML that contains uploaded code snippet with a specified id(UUID). The code snippet is not accessible if one of the restrictions is triggered.
 
 Request:
-```http://localhost:8080/code/2187c46e-03ba-4b3a-828b-963466ea348c```
+```http://localhost:8889/code/2187c46e-03ba-4b3a-828b-963466ea348c```
 
 <details>
 <summary><b>Sample response</b></summary>
@@ -214,7 +214,7 @@ Request:
  Request return HTML that contains 10 most recently uploaded code snippets sorted from the newest to the oldest. Request doesn't return any restricted snippets.
  
  Request:
-```http://localhost:8080/code/latest```
+```http://localhost:8889/code/latest```
 
 <details>
 <summary><b>Sample response</b></summary>
