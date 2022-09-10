@@ -53,7 +53,7 @@ Make sure you have [git](https://git-scm.com/) installed. The application uses H
 Clone repository and enter its folder:
 
 ```
-https://github.com/dominikablachut/Code_Sharing_Platform.git
+git clone https://github.com/dominikablachut/Code_Sharing_Platform.git
 cd Code_Sharing_Platform
 ```
 
