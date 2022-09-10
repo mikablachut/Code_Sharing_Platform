@@ -204,9 +204,9 @@ Request:
 
 <details>
 <summary><b>Sample response</b></summary>
-<p>
 
-</p>
+![GetCode](https://user-images.githubusercontent.com/98345304/189479478-cc8e8990-62fa-4938-8d68-96167edf488f.jpg)
+
 </details>
 
 ### Get List Of Latest Code Request
