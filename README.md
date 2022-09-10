@@ -190,9 +190,9 @@ Request:
 
 <details>
 <summary><b>Sample response</b></summary>
-<p>
-
-</p>
+   
+![GetCodeNew](https://user-images.githubusercontent.com/98345304/189479667-bc354633-000c-4e1f-b88c-b3c81e653d6f.jpg)
+   
 </details>
 
 ### Get Code Request
@@ -218,9 +218,9 @@ Request:
 
 <details>
 <summary><b>Sample response</b></summary>
-<p>
-
-</p>
+   
+![GetCodeLatest](https://user-images.githubusercontent.com/98345304/189479642-0e93574d-e823-4cf1-9fa9-57c47a370fa6.jpg)
+   
 </details>
 
  
