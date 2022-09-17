@@ -18,7 +18,7 @@
 
 Web application that allows you to share code. WEB interface and REST API has been implemented. The user can add code snippets, specifying the time for which it will be available in the database and the number of its possible views. If one of the above restrictions is met, the code is automatically removed from the databse. The user can also view the added code after entering its UUID or can view the last 10 added code snippets that were not restricted with a limit of the number of views or viewing time.
 
-The idea for project cames from [JetBrains Academy](https://www.jetbrains.com/academy/) Java Beckend Developer track.
+The idea for project comes from [JetBrains Academy](https://www.jetbrains.com/academy/) Java Beckend Developer track.
 </details>
 
 ## Technologies
