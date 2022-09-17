@@ -60,8 +60,8 @@ Now you can run the app using Gradle:
 gradle bootRun
 ```
 
-You can also run the application using traditional way using ```java -jar``` command but for that, you need to generate jar of out spring boot application.  
-Here are the steps for Gradle:
+Application can also be started using ```java -jar``` command but for that, we need to generate jar file.  
+Steps for this scenario:
 
 ```
 gradle build
