@@ -6,7 +6,7 @@
     * [Add Code Endpoint](#add-code-endpoint)
     * [Get Code Endpoint](#get-code-endpoint)
     * [Get List Of Latest Code Endpoint](#get-list-of-latest-code-endpoint)
-* [Web Interface Requests](#web-interface-requests)
+* [Web Interface](#web-interface)
     * [Add Code Request](#add-code-request)
     * [Get Code Request](#get-code-request)
     * [Get List Of Latest Code Request](#get-list-of-latest-code-request)
@@ -14,14 +14,11 @@
 ## Description
 
 <details>
-<summary>Click here to see general information about <b>Project</b>!</summary>
+<summary>Click here to see general information about the <b>Project</b>!</summary>
 
-Web application that allows to share code. WEB interface and REST API has been implemented. The user can add a code snippets, specifying the time for which it will be 
-available in the database and the number of its possible views. If one above-mentioned restrictions is reached, the code is automatically removed from the databse. The 
-user can also view the added code after entering its UUID or can view the last 10 added code snippets that were not restricted with a limit of the number of views or
-viewing time.
+Web application that allows you to share code. WEB interface and REST API has been implemented. The user can add code snippets, specifying the time for which it will be available in the database and the number of its possible views. If one of the above restrictions is met, the code is automatically removed from the databse. The user can also view the added code after entering its UUID or can view the last 10 added code snippets that were not restricted with a limit of the number of views or viewing time.
 
-The idea for project cames from Java Beckend Developer track in [JetBrains Academy](https://www.jetbrains.com/academy/).
+The idea for project cames from [JetBrains Academy](https://www.jetbrains.com/academy/) Java Beckend Developer track.
 </details>
 
 ## Technologies
@@ -50,7 +47,7 @@ Make sure you have [git](https://git-scm.com/) installed. The application uses H
 
 <b>Java 17 is required for this step.</b>
 
-Clone repository and enter its folder:
+Clone the repository and enter its folder:
 
 ```
 git clone https://github.com/dominikablachut/Code_Sharing_Platform.git
@@ -63,8 +60,8 @@ Now you can run the app using Gradle:
 gradle bootRun
 ```
 
-We can also run the application using traditional way using ```java -jar``` command but for that, we need to generate jar of out spring boot application.  
-Let see those steps for Gradle:
+You can also run the application using traditional way using ```java -jar``` command but for that, you need to generate jar of out spring boot application.  
+Here are the steps for Gradle:
 
 ```
 gradle build
@@ -78,11 +75,12 @@ program for testing existing endpoints.
 
 ### Add Code Endpoint
 
-Endpoint takes a JSON object with a field code and two other fields:
-- time field contains the time (in seconds) during which the snippet is accessible.
-- views field contains a number of views allowed for this snippet.
-Negative values and 0 corresponds to the absence of the restriction.Endpoint return JSON with a single field id. ID is the unique UUID number of the snippet that helps you
-access it via the endpoint GET /api/code/UUID.
+Endpoint accepts a JSON object with the following fields:
+- 'code' field contains code snippet
+- 'time' field contains the time (in seconds) during which the snippet is accessible.
+- 'views' field contains a number of views allowed for this snippet.
+
+Negative values and 0 corresponds to the absence of the restriction.Endpoint returns JSON output with a single field id. ID is the unique UUID number of the snippet which helps you access it via the GET  endpoint: ```/api/code/UUID```.
 
 POST method
 
@@ -112,8 +110,7 @@ Request body:
 
 ### Get Code Endpoint
 
-Endpoint  returns a code snippet with a specified id as a JSON object (where {id} is the id of a code snippet). The code snippet is not accessible if one of the 
-restrictions is triggered. Endpoint will return 404 Not Found in this case and all the cases when no snippet with such a UUID was found.
+Endpoint returns a code snippet with a specified ID as a JSON object (where {id} is the ID of a code snippet). The code snippet is not accessible if any restriction is triggered. In such case the endpoint will return '404 Not Found' error message. Same error message will appear when no snippet with such a ID.
 
 GET Method
 
@@ -170,23 +167,19 @@ GET method
 </p>
 </details>
 
-## Web Interface Requests
+## Web Interface
 
-When you start the application a H2 database containing initial tables will be automaticly created. You can use your own browser and enter the address
-```http://localhost:8889``` for testing the existing requests.
+Enter the below address ```http://localhost:8889``` to open the application.
 
 ### Add Code Request
 
-Request should return HTML that contains:
-- Tags:
-  - <textarea id="code_snippet"> ... </textarea> where you can paste a code snippet;
-  - <input id="time_restriction" type="text"/> should contain the time restriction.
-  - <input id="views_restriction" type="text"/> should contain the views restriction.
-- Title Create;
-- Button <button id="send_snippet" type="submit" onclick="send()">Submit</button>.
-
 Request:
 ```http://localhost:8889/code/new```
+
+Request should return a web page that contains:
+ - 'Text area' where you can paste a code snippet;
+ - 'Time restriction' where you can enter the time restriction.
+ - 'Views restriction' where you can enter the views restriction.
 
 <details>
 <summary><b>Sample response</b></summary>
@@ -197,10 +190,10 @@ Request:
 
 ### Get Code Request
 
-Request return HTML that contains uploaded code snippet with a specified id(UUID). The code snippet is not accessible if one of the restrictions is triggered.
-
 Request:
 ```http://localhost:8889/code/2187c46e-03ba-4b3a-828b-963466ea348c```
+
+Request returns web page (by code snippet's ID) that contains uploaded code snippet. The code snippet is not accessible if any of the restriction is triggered.
 
 <details>
 <summary><b>Sample response</b></summary>
@@ -211,11 +204,11 @@ Request:
 
 ### Get List Of Latest Code Request
 
- Request return HTML that contains 10 most recently uploaded code snippets sorted from the newest to the oldest. Request doesn't return any restricted snippets.
- 
  Request:
 ```http://localhost:8889/code/latest```
 
+Request returns web page that contains 10 most recently uploaded code snippets sorted from the newest to the oldest. Request doesn't return any restricted snippets.
+ 
 <details>
 <summary><b>Sample response</b></summary>
    
