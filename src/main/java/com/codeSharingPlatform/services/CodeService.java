@@ -50,6 +50,7 @@ public class CodeService {
                throw new CodeNotFoundException();
            }
        }
+
        if (code.isTimeRestricted()) {
            long currentSeconds = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
            LocalDateTime codeLocalDateTime = LocalDateTime.parse(code.getDate(),
